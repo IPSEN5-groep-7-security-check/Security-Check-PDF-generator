@@ -11,7 +11,7 @@ var transporter = nodemailer.createTransport({
 });
 
 router.post('/', (req, res) => {
-    // var attachment = (typeof req.body.attachment !="undefined") ? req.body.attachment : '';
+    // var attachment = (typeof req.body.attachment !="undefined") ? req.body.attachment : ''; test
     var mailOptions = {
         from: 'h.elfaquir53@gmail.com',
         to: req.body.to,
