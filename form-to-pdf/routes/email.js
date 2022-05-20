@@ -20,7 +20,7 @@ router.post('/', (req, res) => {
         attachments: [
             {   // use URL as an attachment
                 filename: 'Resultaten.pdf',
-                path: 'C:\\Users\\helfa\\Downloads\\2022-0001OIFF.pdf'
+                path: 'RESULTATENPDF'
             }]
         };
 
