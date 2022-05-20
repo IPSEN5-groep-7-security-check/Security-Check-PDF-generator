@@ -8,10 +8,22 @@
   "dependencies": {
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
+    "ejs": "^3.1.8",
     "express": "~4.16.1",
+    "html-pdf": "^3.0.1",
     "http-errors": "~1.6.3",
+    "json2html": "^0.0.8",
     "morgan": "~1.9.1",
+    "node-json2html": "^2.2.2",
+    "nodemailer-mock": "^1.5.12",
     "pdfkit": "^0.13.0",
+    "pdfkit-table": "^0.1.95",
+    "public": "^0.1.5",
     "pug": "3.0.1"
+  },
+  "devDependencies": {
+    "cors": "^2.8.5",
+    "nodemailer": "^6.7.5",
+    "tailwindcss": "^3.0.24"
   }
 }

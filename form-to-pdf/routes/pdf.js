@@ -1,21 +1,52 @@
 const express = require('express')
 const router = express.Router()
-const PDFDocument = require('pdfkit')
+const pdf = require('html-pdf')
+const options = {format: 'Letter'};
+const ejs = require('ejs');
+const path = require("path");
+const logger = require("debug");
 
 router.post('/', (req, res) => {
-    const doc = new PDFDocument()
-    let filename = req.body.filename
-    // Stripping special characters
-    filename = encodeURIComponent(filename) + '.pdf'
-    // Setting response to 'attachment' (download).
-    // If you use 'inline' here it will automatically open the PDF
-    res.setHeader('Content-disposition', 'attachment; filename="' + filename + '"')
-    res.setHeader('Content-type', 'application/pdf')
-    const content = req.body.content
-    doc.y = 300
-    doc.text(content, 50, 50)
-    doc.pipe(res)
-    doc.end()
+
+    // Dummy data
+    let data = {
+        "end_time": "Tue, 22 Mar 2016 21:51:41 GMT",
+        "grade": "A",
+        "hidden": false,
+        "response_headers": "yes",
+        "scan_id": 1,
+        "score": 90,
+        "likelihood_indicator": "LOW",
+        "start_time": "Tue, 22 Mar 2016 21:51:40 GMT",
+        "state": "FINISHED",
+        "tests_failed": 2,
+        "tests_passed": 9,
+        "tests_quantity": 11
+    }
+
+    ejs.renderFile(path.join(__dirname, '../views/template.ejs'), {data: data}, (err, result) => {
+        if (err) {
+            logger.log('info', 'error encountered: ' + err);
+        }
+        else {
+            try {
+                createPDF(result, options);
+            } catch(err) {
+                if (err) {
+                    throw err;
+                }
+            }
+        }
+    });
+
+    res.end();
 })
+
+function createPDF(html, options){
+    pdf.create(html, options).toFile('./resultaten.pdf', function(err, res) {
+        if (err) return console.log(err);
+        console.log(res);
+    });
+}
 
 module.exports = router
