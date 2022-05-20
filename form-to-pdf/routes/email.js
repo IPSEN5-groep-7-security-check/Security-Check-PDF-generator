@@ -20,7 +20,7 @@ router.post('/', (req, res) => {
         attachments: [
             {   // use URL as an attachment
                 filename: 'Resultaten.pdf',
-                path: 'RESULTATENPDF'
+                path: 'PATH_To_RESULTATENPDF'
             }]
         };
 
