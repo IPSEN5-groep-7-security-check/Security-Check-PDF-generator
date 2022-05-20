@@ -5,15 +5,15 @@ var nodemailer = require('nodemailer');
 var transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
-        user: 'h.elfaquir53@gmail.com',
-        pass: 'denhaag070'
+        user: 'EMAIL',
+        pass: 'PASSWORD'
     }
 });
 
 router.post('/', (req, res) => {
     // var attachment = (typeof req.body.attachment !="undefined") ? req.body.attachment : '';
     var mailOptions = {
-        from: 'h.elfaquir53@gmail.com',
+        from: 'EMAIL',
         to: req.body.to,
         subject: req.body.subject,
         text: req.body.text,
